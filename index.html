@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      window.addEventListener('message', function(e) {
+        if (e.data && e.data.type === 'poli-theme') {
+          document.documentElement.setAttribute('data-theme', e.data.light ? 'light' : 'dark');
+        }
+      });
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate how many laser tattoo removal sessions you'll need using a Kirby-Desai-inspired scoring model. Enter skin type, ink colours, location, density, and scarring.">
+  <title>Tattoo Removal Sessions Estimator | Poli International</title>
+  <link rel="stylesheet" href="/tools/tattoo-removal-estimator/css/style.css">
+</head>
+<body>
+<div class="tool-wrapper">
+
+  <header class="tool-header">
+    <div class="tool-header__badge">⬛ Removal Science</div>
+    <h1>Tattoo Removal Sessions Estimator</h1>
+    <p>Six-factor Kirby-Desai-inspired model to estimate how many laser sessions your tattoo is likely to need. Fill in the details below for a realistic session range.</p>
+  </header>
+
+  <div class="calc-card">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="skin-type">Fitzpatrick Skin Type</label>
+        <select id="skin-type" class="input-field">
+          <option value="">Select…</option>
+          <option value="1">I–II — Very fair / Fair (always burns, rarely tans)</option>
+          <option value="2">III — Medium / Olive (burns sometimes, tans gradually)</option>
+          <option value="3">IV — Olive / Light brown (burns rarely, tans well)</option>
+          <option value="4">V — Brown (very rarely burns, tans darkly)</option>
+          <option value="5">VI — Dark brown / Black (never burns)</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="location">Tattoo Location</label>
+        <select id="location" class="input-field">
+          <option value="">Select…</option>
+          <option value="0">Head / Neck / Face</option>
+          <option value="1">Upper trunk (chest, upper back)</option>
+          <option value="2">Lower trunk (abdomen, lower back)</option>
+          <option value="3">Upper extremity (upper arm, forearm)</option>
+          <option value="4">Lower extremity / Hands / Feet</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="ink-color">Ink Colours</label>
+        <select id="ink-color" class="input-field">
+          <option value="">Select…</option>
+          <option value="1">Black only</option>
+          <option value="1.5">Black and grey</option>
+          <option value="2">Coloured (no fluorescent)</option>
+          <option value="4">Includes fluorescent / neon inks</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="ink-density">Ink Density</label>
+        <select id="ink-density" class="input-field">
+          <option value="">Select…</option>
+          <option value="1">Minimal — fine-line, single pass, outline only</option>
+          <option value="2">Light — outline with some shading</option>
+          <option value="3">Moderate — solid fill, packed shading</option>
+          <option value="4">Heavy — fully saturated, multiple packed passes</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="scarring">Scarring / Tissue Change</label>
+        <select id="scarring" class="input-field">
+          <option value="">Select…</option>
+          <option value="0">None — skin surface smooth</option>
+          <option value="1">Mild — slight raised or textured areas</option>
+          <option value="2">Moderate — visible scarring present</option>
+          <option value="3">Severe — significant raised or keloid scarring</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="cover-up">Cover-up Tattoo?</label>
+        <select id="cover-up" class="input-field">
+          <option value="">Select…</option>
+          <option value="0">No — original tattoo only</option>
+          <option value="4">Yes — this tattoo covers an existing one</option>
+        </select>
+      </div>
+    </div>
+    <button id="calc-btn" class="primary-btn">Estimate Sessions</button>
+  </div>
+
+  <div id="results" style="display:none">
+    <div class="results-row">
+      <div class="metric-card">
+        <div class="metric-label">Estimated Sessions</div>
+        <div id="session-range" class="metric-value">—</div>
+        <div class="metric-sub">sessions (estimate)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Difficulty Score</div>
+        <div id="score-display" class="metric-value">—</div>
+        <div id="difficulty-label" class="metric-sub">—</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Session Spacing</div>
+        <div class="metric-value">6–8 wks</div>
+        <div class="metric-sub">Minimum between sessions</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Total Duration</div>
+        <div id="duration-range" class="metric-value">—</div>
+        <div class="metric-sub">At 6-week intervals</div>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <h2 class="detail-heading">Factor Breakdown</h2>
+      <div id="factor-breakdown" class="factor-list"></div>
+    </div>
+
+    <div class="detail-card">
+      <h2 class="detail-heading">Clinical Notes</h2>
+      <div id="explanation" class="explanation-body"></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Note:</strong> This estimator applies a Kirby-Desai-inspired scoring framework as a reference guide. Actual session count varies with laser technology (Q-switch vs Nd:YAG vs picosecond), operator energy settings, individual immune response, and skin condition at time of treatment. Always obtain a professional consultation before beginning laser removal.
+  </div>
+
+</div>
+<script src="/js/input-guards.js"></script>
+<script src="/tools/tattoo-removal-estimator/js/app.js"></script>
+</body>
+</html>
