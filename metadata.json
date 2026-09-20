@@ -1,0 +1,8 @@
+{
+  "name": "Tattoo Removal Sessions Estimator-V2",
+  "description": "Clinical six-factor Kirby-Desai scale estimator for laser tattoo removal sessions, timelines, cover-up preparation, and consultation planning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
