@@ -17,6 +17,8 @@
     return el ? el.textContent.trim() : '';
   }
 
+  if (typeof PoliShare === 'undefined') return;
+
   PoliShare.init({
     tool: 'tattoo-removal-estimator',
     mount: '#results',
@@ -48,13 +50,20 @@
       if (!results || results.style.display === 'none') return null;
       var sessions = text('session-range');
       if (!sessions) return null;
+      var titleText = (typeof window !== 'undefined' && window.i18n)
+        ? window.i18n.t('share.card_title', { sessions: sessions })
+        : ('My laser removal estimate: ' + sessions + ' sessions');
+      var sLabel = (typeof window !== 'undefined' && window.i18n) ? window.i18n.t('share.label_sessions') : 'Sessions';
+      var dLabel = (typeof window !== 'undefined' && window.i18n) ? window.i18n.t('share.label_difficulty') : 'Difficulty';
+      var scLabel = (typeof window !== 'undefined' && window.i18n) ? window.i18n.t('share.label_score') : 'Score';
+      var durLabel = (typeof window !== 'undefined' && window.i18n) ? window.i18n.t('share.label_duration') : 'Duration';
       return {
-        t: 'My laser removal estimate: ' + sessions + ' sessions',
+        t: titleText,
         d: [
-          ['Sessions', sessions],
-          ['Difficulty', text('difficulty-label')],
-          ['Score', text('score-display')],
-          ['Duration', text('duration-range')],
+          [sLabel, sessions],
+          [dLabel, text('difficulty-label')],
+          [scLabel, text('score-display')],
+          [durLabel, text('duration-range')],
         ],
       };
     },
